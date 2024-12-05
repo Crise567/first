@@ -12,32 +12,43 @@
         #controls {
             margin-top: 10px;
         }
-        #restartButton {
+        #restartButton, #menu {
             margin-top: 10px;
-            display: none; /* 初始时隐藏按钮 */
+            display: none; /* 初始时隐藏按钮和菜单 */
+        }
+        #menu {
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>贪吃蛇游戏</h1>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
-    <div id="controls">
-        ........<button id="up">上</button>
-        <br>
-        <button id="left">左</button>.......
-        <button id="right">右</button>
-        <br>
-        ........<button id="down">下</button>
+    
+    <div id="menu">
+        <h2>欢迎来到贪吃蛇游戏！</h2>
+        <button id="startButton">开始游戏</button>
     </div>
+    
+    <div id="controls">
+        <button id="up">上</button>
+        <button id="left">左</button>
+        <button id="down">下</button>
+        <button id="right">右</button>
+    </div>
+    
     <button id="restartButton">重新开始</button>
+    
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const restartButton = document.getElementById('restartButton');
+        const startButton = document.getElementById('startButton');
         const upButton = document.getElementById('up');
         const downButton = document.getElementById('down');
         const leftButton = document.getElementById('left');
         const rightButton = document.getElementById('right');
+        const menu = document.getElementById('menu');
 
         const box = 20; // 每个方块的大小
         let snake;
@@ -139,7 +150,13 @@
 
         restartButton.addEventListener('click', init); // 点击按钮重新开始游戏
 
-        init(); // 初始化游戏
+        startButton.addEventListener('click', () => {
+            menu.style.display = 'none'; // 隐藏菜单
+            init(); // 初始化游戏
+        });
+
+        // 游戏初始化时显示菜单
+        menu.style.display = 'block';
     </script>
 </body>
 </html>
